@@ -16,7 +16,7 @@ public class ProductsController implements ProductsControllerInt {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@RequestBody Product product) {
         Product productPersist = productServiceInt.save(product);
         return productPersist;
