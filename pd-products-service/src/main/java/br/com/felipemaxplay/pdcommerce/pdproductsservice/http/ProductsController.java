@@ -24,7 +24,14 @@ public class ProductsController implements ProductsControllerInt {
     }
 
     @GetMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Product getProduct(@PathVariable(name = "id") Long id) {
         return productService.getById(id);
+    }
+
+    @DeleteMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable(name = "id") Long id) {
+        productService.deleteById(id);
     }
 }

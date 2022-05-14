@@ -6,4 +6,6 @@ public interface ProductServiceInt {
     Product save(Product product);
 
     Product getById(Long id);
+
+    void deleteById(Long id);
 }

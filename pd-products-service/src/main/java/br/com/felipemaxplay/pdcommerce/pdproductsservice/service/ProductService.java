@@ -24,4 +24,12 @@ public class ProductService implements ProductServiceInt {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException());
     }
+
+    @Override
+    public void deleteById(Long id) {
+        if(!productRepository.existsById(id)) {
+            throw new RuntimeException();
+        }
+        productRepository.deleteById(id);
+    }
 }
