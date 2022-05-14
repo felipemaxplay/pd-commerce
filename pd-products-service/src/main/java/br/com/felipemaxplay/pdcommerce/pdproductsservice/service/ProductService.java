@@ -32,4 +32,12 @@ public class ProductService implements ProductServiceInt {
         }
         productRepository.deleteById(id);
     }
+
+    @Override
+    public Product updateById(Product product) {
+        if(!productRepository.existsById(product.getId())) {
+            throw new RuntimeException();
+        }
+        return productRepository.save(product);
+    }
 }

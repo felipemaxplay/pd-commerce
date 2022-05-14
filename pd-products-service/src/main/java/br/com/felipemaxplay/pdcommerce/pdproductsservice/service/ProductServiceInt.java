@@ -8,4 +8,6 @@ public interface ProductServiceInt {
     Product getById(Long id);
 
     void deleteById(Long id);
+
+    Product updateById(Product product);
 }

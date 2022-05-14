@@ -34,4 +34,12 @@ public class ProductsController implements ProductsControllerInt {
     public void deleteProduct(@PathVariable(name = "id") Long id) {
         productService.deleteById(id);
     }
+
+    @PutMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Product updateProduct(@PathVariable(name = "id") Long id, @RequestBody Product product) {
+        Product productUpdate = new Product(id, product.getName(), product.getPrice(), product.getDescription(),
+                product.getType(), product.getBrand(), product.getSku());
+        return productService.updateById(product);
+    }
 }
