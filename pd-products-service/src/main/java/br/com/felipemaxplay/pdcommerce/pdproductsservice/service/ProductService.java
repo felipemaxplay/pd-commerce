@@ -18,4 +18,10 @@ public class ProductService implements ProductServiceInt {
         Product productPersist = productRepository.save(product);
         return productPersist;
     }
+
+    @Override
+    public Product getById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException());
+    }
 }
