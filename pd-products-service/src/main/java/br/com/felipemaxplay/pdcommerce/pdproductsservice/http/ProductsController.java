@@ -1,8 +1,8 @@
 package br.com.felipemaxplay.pdcommerce.pdproductsservice.http;
 
+import br.com.felipemaxplay.pdcommerce.pdproductsservice.http.data.request.ProductRequestDto;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.model.Product;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.service.ProductService;
-import br.com.felipemaxplay.pdcommerce.pdproductsservice.service.ProductServiceInt;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +18,10 @@ public class ProductsController implements ProductsControllerInt {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createProduct(@RequestBody Product product) {
-        Product productPersist = productService.save(product);
-        return productPersist;
+    public Product createProduct(@RequestBody ProductRequestDto dto) {
+        Product productPersist = new Product(dto.getName(), dto.getPrice(), dto.getDescription(), dto.getType(),
+                dto.getBrand(), dto.getSku());
+        return productService.save(productPersist);
     }
 
     @GetMapping(path = "/{id}")
