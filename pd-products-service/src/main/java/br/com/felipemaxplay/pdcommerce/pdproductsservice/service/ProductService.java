@@ -4,6 +4,8 @@ import br.com.felipemaxplay.pdcommerce.pdproductsservice.model.Product;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
+
 @Service
 public class ProductService implements ProductServiceInt {
 
@@ -15,20 +17,19 @@ public class ProductService implements ProductServiceInt {
 
     @Override
     public Product save(Product product) {
-        Product productPersist = productRepository.save(product);
-        return productPersist;
+        return productRepository.save(product);
     }
 
     @Override
     public Product getById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException());
+                .orElseThrow(() -> new NoResultException(String.format("product with id %d not found", id)));
     }
 
     @Override
     public void deleteById(Long id) {
         if(!productRepository.existsById(id)) {
-            throw new RuntimeException();
+            throw new NoResultException(String.format("product with id %d not found", id));
         }
         productRepository.deleteById(id);
     }
@@ -36,7 +37,7 @@ public class ProductService implements ProductServiceInt {
     @Override
     public Product updateById(Product product) {
         if(!productRepository.existsById(product.getId())) {
-            throw new RuntimeException();
+            throw new NoResultException(String.format("product with id %d not found", product.getId()));
         }
         return productRepository.save(product);
     }
