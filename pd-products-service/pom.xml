@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.felipemaxplay.pd-commerce</groupId>
 	<artifactId>pd-products-service</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>pd-products-service</name>
 	<description>API para os nossos produtos.</description>
 	<properties>
