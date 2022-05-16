@@ -6,6 +6,8 @@ import br.com.felipemaxplay.pdcommerce.pdproductsservice.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/v1/products")
 public class ProductsController implements ProductsControllerInt {
@@ -18,7 +20,7 @@ public class ProductsController implements ProductsControllerInt {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product createProduct(@RequestBody ProductRequestDto dto) {
+    public Product createProduct(@Valid @RequestBody ProductRequestDto dto) {
         Product productPersist = new Product(dto.getName(), dto.getPrice(), dto.getDescription(), dto.getType(),
                 dto.getBrand(), dto.getSku());
         return productService.save(productPersist);
@@ -38,7 +40,7 @@ public class ProductsController implements ProductsControllerInt {
 
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Product updateProduct(@PathVariable(name = "id") Long id, @RequestBody ProductRequestDto dto) {
+    public Product updateProduct(@PathVariable(name = "id") Long id, @Valid @RequestBody ProductRequestDto dto) {
         Product productUpdate = new Product(id, dto.getName(), dto.getPrice(), dto.getDescription(),
                 dto.getType(), dto.getBrand(), dto.getSku());
         return productService.updateById(productUpdate);

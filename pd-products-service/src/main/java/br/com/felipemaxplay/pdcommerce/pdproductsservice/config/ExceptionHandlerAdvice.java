@@ -2,6 +2,7 @@ package br.com.felipemaxplay.pdcommerce.pdproductsservice.config;
 
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.http.data.response.PdError;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,6 +11,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.persistence.NoResultException;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
@@ -26,6 +28,18 @@ public class ExceptionHandlerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public PdError badRequestException(MethodArgumentTypeMismatchException e) {
         return new PdError(new Date(), "400", "Bad request", "Parameter invalid");
+    }
+
+    @ResponseBody
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public PdError BadsRequestsException(MethodArgumentNotValidException e) {
+        String mensagem = e.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage() + "; ")
+                .collect(Collectors.joining());
+        return new PdError(new Date(), "X_200", "Bad Request", mensagem);
     }
 
     @ResponseBody
