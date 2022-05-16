@@ -17,6 +17,6 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(NoResultException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public PdError notFoundException(NoResultException e) {
-        return new PdError(new Date(), "404", e.getMessage());
+        return new PdError(new Date(), "404", "Not found", e.getMessage());
     }
 }

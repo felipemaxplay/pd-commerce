@@ -8,11 +8,14 @@ import java.util.Objects;
 public class PdError {
     private final Date timestamp;
     private final String code;
+    private final String error;
+
     private final String message;
 
-    public PdError(@NonNull Date timestamp, @NonNull String code, @NonNull String message) {
+    public PdError(@NonNull Date timestamp, @NonNull String code, @NonNull String error, @NonNull String message) {
         this.timestamp = Objects.requireNonNull(timestamp);
         this.code = Objects.requireNonNull(code);
+        this.error = Objects.requireNonNull(error);
         this.message = Objects.requireNonNull(message);
     }
 
@@ -24,6 +27,10 @@ public class PdError {
         return code;
     }
 
+    public String getError() {
+        return error;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -33,6 +40,7 @@ public class PdError {
         return "PdError{" +
                 "timestamp=" + timestamp +
                 ", code='" + code + '\'' +
+                ", error='" + error + '\'' +
                 ", message='" + message + '\'' +
                 '}';
     }
