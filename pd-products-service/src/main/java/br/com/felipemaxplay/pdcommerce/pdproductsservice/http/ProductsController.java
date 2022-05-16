@@ -38,9 +38,9 @@ public class ProductsController implements ProductsControllerInt {
 
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Product updateProduct(@PathVariable(name = "id") Long id, @RequestBody Product product) {
-        Product productUpdate = new Product(id, product.getName(), product.getPrice(), product.getDescription(),
-                product.getType(), product.getBrand(), product.getSku());
-        return productService.updateById(product);
+    public Product updateProduct(@PathVariable(name = "id") Long id, @RequestBody ProductRequestDto dto) {
+        Product productUpdate = new Product(id, dto.getName(), dto.getPrice(), dto.getDescription(),
+                dto.getType(), dto.getBrand(), dto.getSku());
+        return productService.updateById(productUpdate);
     }
 }
