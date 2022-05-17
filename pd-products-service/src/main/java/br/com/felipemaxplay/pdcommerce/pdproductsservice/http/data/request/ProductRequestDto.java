@@ -41,4 +41,28 @@ public class ProductRequestDto {
     public String getSku() {
         return sku;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 }
