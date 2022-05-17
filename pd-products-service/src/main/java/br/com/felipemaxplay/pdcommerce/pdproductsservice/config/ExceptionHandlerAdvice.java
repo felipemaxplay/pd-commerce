@@ -39,7 +39,7 @@ public class ExceptionHandlerAdvice {
                 .stream()
                 .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage() + "; ")
                 .collect(Collectors.joining());
-        return new PdError(new Date(), "X_200", "Bad Request", mensagem);
+        return new PdError(new Date(), "400", "Bad Request", mensagem);
     }
 
     @ResponseBody

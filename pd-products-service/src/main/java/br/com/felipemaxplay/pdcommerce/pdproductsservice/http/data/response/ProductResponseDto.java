@@ -3,6 +3,7 @@ package br.com.felipemaxplay.pdcommerce.pdproductsservice.http.data.response;
 import java.math.BigDecimal;
 
 public class ProductResponseDto {
+    private Long id;
     private String name;
     private BigDecimal price;
     private String description;
@@ -13,6 +14,14 @@ public class ProductResponseDto {
     @Deprecated
     public ProductResponseDto() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
