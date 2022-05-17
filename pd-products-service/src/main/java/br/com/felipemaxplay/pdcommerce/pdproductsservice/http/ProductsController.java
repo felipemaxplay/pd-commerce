@@ -30,6 +30,7 @@ public class ProductsController implements ProductsControllerInt {
         this.pagedResourcesAssembler = pagedResourcesAssembler;
     }
 
+    @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<Product> createProduct(@NonNull @Valid @RequestBody ProductRequestDto dto) {
@@ -39,6 +40,7 @@ public class ProductsController implements ProductsControllerInt {
         return entityModel;
     }
 
+    @Override
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Product> getProduct(@NonNull @PathVariable(name = "id") Long id) {
@@ -46,6 +48,7 @@ public class ProductsController implements ProductsControllerInt {
         return modelAssembler.toModel(product);
     }
 
+    @Override
     @GetMapping(path = "")
     @ResponseStatus(HttpStatus.OK)
     public PagedModel<EntityModel<Product>> getAllProduct(@NonNull @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -54,12 +57,14 @@ public class ProductsController implements ProductsControllerInt {
         return pagedModel;
     }
 
+    @Override
     @DeleteMapping(path = "{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@NonNull @PathVariable(name = "id") Long id) {
         productService.deleteById(id);
     }
 
+    @Override
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Product> updateProduct(@PathVariable(name = "id") Long id, @Valid @RequestBody ProductRequestDto dto) {
