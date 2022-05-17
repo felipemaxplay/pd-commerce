@@ -3,6 +3,10 @@ package br.com.felipemaxplay.pdcommerce.pdproductsservice.http;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.http.data.request.ProductRequestDto;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.model.Product;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.service.ProductService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +34,12 @@ public class ProductsController implements ProductsControllerInt {
     @ResponseStatus(HttpStatus.OK)
     public Product getProduct(@PathVariable(name = "id") Long id) {
         return productService.getById(id);
+    }
+
+    @GetMapping(path = "")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Product> getAllProduct(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        return productService.findAll(pageable);
     }
 
     @DeleteMapping(path = "{id}")

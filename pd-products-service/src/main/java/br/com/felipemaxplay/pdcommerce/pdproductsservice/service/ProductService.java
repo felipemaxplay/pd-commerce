@@ -2,6 +2,8 @@ package br.com.felipemaxplay.pdcommerce.pdproductsservice.service;
 
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.model.Product;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
@@ -40,5 +42,10 @@ public class ProductService implements ProductServiceInt {
             throw new NoResultException(String.format("product with id %d not found", product.getId()));
         }
         return productRepository.save(product);
+    }
+
+    @Override
+    public Page<Product> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 }
