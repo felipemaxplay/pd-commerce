@@ -4,8 +4,6 @@ import br.com.felipemaxplay.pdcommerce.pdproductsservice.http.data.request.Produ
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.http.data.response.ProductModelAssembler;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.model.Product;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.service.ProductService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
