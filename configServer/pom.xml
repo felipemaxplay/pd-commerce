@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.felipemaxplay.pdcommerce</groupId>
 	<artifactId>configServer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>configServer</name>
 	<description>Spring Cloud Config Server</description>
 	<properties>
