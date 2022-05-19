@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: pd-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${URI:https://github.com/felipemaxplay/pd-commerce.git}
+          username: ${USERNAME}
+          password: ${PASSWORD}
+          search-paths: properties
+server:
+  port: ${PORT:8888}

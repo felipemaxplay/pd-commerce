@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: pd-discovery-service
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+      fail-fast: true
+  config:
+    import: optional:configserver:http://localhost:8888
