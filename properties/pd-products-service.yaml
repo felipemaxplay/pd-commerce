@@ -14,7 +14,7 @@ spring:
       ddl-auto: update
   artemis:
     mode: native
-    broker-url: ${ARTEMIS_URL:tcp://localhost:61616}
+    broker-url: tcp://${ARTEMIS_HOST:localhost}:${ARTEMIS_PORT:61616}
     user: ${ARTEMIS_USER:felipemaxplay}
     password: ${ARTEMIS_PASSWORD:adminpwd}
 
