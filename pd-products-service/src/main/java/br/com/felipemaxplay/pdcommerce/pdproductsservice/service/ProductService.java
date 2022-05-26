@@ -3,7 +3,6 @@ package br.com.felipemaxplay.pdcommerce.pdproductsservice.service;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.event.ProductEvent;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.model.Product;
 import br.com.felipemaxplay.pdcommerce.pdproductsservice.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
