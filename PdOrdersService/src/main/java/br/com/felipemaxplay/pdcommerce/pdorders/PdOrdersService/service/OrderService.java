@@ -30,4 +30,20 @@ public class OrderService implements OrderServiceInt {
     public Page<Order> findAll(Pageable pageable) {
         return orderRepository.findAll(pageable);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        if (!orderRepository.existsById(id)) {
+            throw new RuntimeException("Not Found");
+        }
+        orderRepository.deleteById(id);
+    }
+
+    @Override
+    public Order updateById(Long id, Order orderUpdated) {
+        Order orderExist = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not Found"));
+        orderExist.finalizeOrder(orderUpdated.getAddress(), orderUpdated.getEmail(), orderUpdated.getProducts());
+        return orderRepository.save(orderExist);
+    }
 }

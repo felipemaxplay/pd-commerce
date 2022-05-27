@@ -55,4 +55,18 @@ public class OrderController implements OrderControllerInt {
         PagedModel<EntityModel<Order>> pagedModel = pagedResourcesAssembler.toModel(page, modelAssembler);
         return pagedModel;
     }
+
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@NonNull @PathVariable(name = "id") Long id) {
+        orderServiceInt.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public EntityModel<Order> updateOrder(@NonNull @PathVariable(name = "id") Long id, @NonNull @Valid @RequestBody OrderRequestDto dto) {
+        Order orderUpdated = orderRequestDtoConverter.toOrder(dto);
+        EntityModel<Order> entityModel = modelAssembler.toModel(orderServiceInt.updateById(id, orderUpdated));
+        return entityModel;
+    }
 }

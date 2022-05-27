@@ -12,4 +12,8 @@ public interface OrderServiceInt {
     Order getById(Long id);
 
     Page<Order> findAll(Pageable pageable);
+
+    void deleteById(Long id);
+
+    Order updateById(Long id, Order orderUpdated);
 }
