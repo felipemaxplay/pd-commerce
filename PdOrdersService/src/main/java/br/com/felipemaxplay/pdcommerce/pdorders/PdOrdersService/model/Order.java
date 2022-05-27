@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,24 +15,25 @@ import java.util.Set;
 @Table(name = "pd_orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "address", nullable = false)
     private String address;
 
-    @Column
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column
+    @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
-    @Column
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "order", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<OrderProduct> products;
+    private Set<OrderProduct> products = new HashSet<>();
 
     @Deprecated
     public Order() {

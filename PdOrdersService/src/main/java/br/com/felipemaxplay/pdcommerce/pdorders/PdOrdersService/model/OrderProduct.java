@@ -11,7 +11,7 @@ import java.util.Objects;
 @Table(name = "pd_order_product")
 public class OrderProduct {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -24,13 +24,13 @@ public class OrderProduct {
     @JoinColumn(name = "id_product")
     private Product product;
 
-    @Column(name = "qtd")
+    @Column(name = "qtd", nullable = false)
     private BigDecimal qtd;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "total_price")
+    @Column(name = "total_price", nullable = false)
     private BigDecimal totalPrice;
 
     @Deprecated
@@ -40,7 +40,7 @@ public class OrderProduct {
     public OrderProduct(@NonNull Product product, @NonNull BigDecimal qtd, @NonNull BigDecimal price) {
         this.product = Objects.requireNonNull(product);
         this.qtd = Objects.requireNonNull(qtd);
-        this.price = Objects.requireNonNull(price);
+        this.price = product.getPrice();
         this.totalPrice = qtd.multiply(price);
     }
 
