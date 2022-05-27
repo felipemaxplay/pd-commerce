@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  activemq-artemis:
+    image: vromero/activemq-artemis:latest
+    restart: always
+    environment:
+      ARTEMIS_USERNAME: felipemaxplay
+      ARTEMIS_PASSWORD: adminpwd
+    ports:
+      - 61616:61616
+      - 8161:8161
+    expose:
+      - 61616
+      - 8161
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: orders
+      MYSQL_USER: orders
+      MYSQL_PASSWORD: ordersadmin
+      MYSQL_ROOT_PASSWORD: ordersadmin
+    ports:
+      - 3306:3306
