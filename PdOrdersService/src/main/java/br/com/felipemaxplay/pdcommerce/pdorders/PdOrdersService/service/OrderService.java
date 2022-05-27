@@ -18,4 +18,10 @@ public class OrderService implements OrderServiceInt {
         Order orderCreated = orderRepository.save(order);
         return orderCreated;
     }
+
+    @Override
+    public Order getById(Long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not Found"));
+    }
 }
