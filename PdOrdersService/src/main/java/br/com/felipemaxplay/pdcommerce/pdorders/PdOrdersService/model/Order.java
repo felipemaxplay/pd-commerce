@@ -44,7 +44,7 @@ public class Order {
         this.date = LocalDateTime.now();
     }
 
-    private void finalizeOrder(@NonNull String address, @NonNull String email, @NonNull Set<OrderProduct> products) {
+    public void finalizeOrder(@NonNull String address, @NonNull String email, @NonNull Set<OrderProduct> products) {
         this.address = Objects.requireNonNull(address);
         this.email = Objects.requireNonNull(email);
         Objects.requireNonNull(products);
