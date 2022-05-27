@@ -2,7 +2,6 @@ package br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.service;
 
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.model.Order;
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
