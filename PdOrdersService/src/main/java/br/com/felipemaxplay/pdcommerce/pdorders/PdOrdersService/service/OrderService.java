@@ -2,6 +2,8 @@ package br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.service;
 
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.model.Order;
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.repository.OrderRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +24,10 @@ public class OrderService implements OrderServiceInt {
     public Order getById(Long id) {
         return orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not Found"));
+    }
+
+    @Override
+    public Page<Order> findAll(Pageable pageable) {
+        return orderRepository.findAll(pageable);
     }
 }
