@@ -31,3 +31,5 @@ services:
       POSTGRES_DB: products
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+    ports:
+      - 5432:5432
