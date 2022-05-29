@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.persistence.NoResultException;
-import java.util.Date;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
@@ -20,14 +19,14 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(NoResultException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public PdError notFoundException(NoResultException e) {
-        return new PdError(new Date(), "404", "Not found", e.getMessage());
+        return new PdError("404", "Not found", e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public PdError badRequestException(MethodArgumentTypeMismatchException e) {
-        return new PdError(new Date(), "400", "Bad request", "Parameter invalid");
+        return new PdError("400", "Bad request", "Parameter invalid");
     }
 
     @ResponseBody
@@ -39,13 +38,13 @@ public class ExceptionHandlerAdvice {
                 .stream()
                 .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage() + "; ")
                 .collect(Collectors.joining());
-        return new PdError(new Date(), "400", "Bad Request", mensagem);
+        return new PdError("400", "Bad Request", mensagem);
     }
 
     @ResponseBody
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public PdError genericError(Exception e) {
-        return new PdError(new Date(), "500", "Internal server error", e.getMessage());
+        return new PdError("500", "Internal server error", e.getMessage());
     }
 }
