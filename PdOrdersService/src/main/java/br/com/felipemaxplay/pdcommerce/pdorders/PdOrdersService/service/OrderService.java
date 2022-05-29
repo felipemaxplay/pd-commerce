@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
+
 @Service
 public class OrderService implements OrderServiceInt {
     private final OrderRepository orderRepository;
@@ -23,7 +25,7 @@ public class OrderService implements OrderServiceInt {
     @Override
     public Order getById(Long id) {
         return orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Not Found"));
+                .orElseThrow(() -> new NoResultException(String.format("order with id %d not found", id)));
     }
 
     @Override
@@ -34,7 +36,7 @@ public class OrderService implements OrderServiceInt {
     @Override
     public void deleteById(Long id) {
         if (!orderRepository.existsById(id)) {
-            throw new RuntimeException("Not Found");
+            throw new NoResultException(String.format("order with id %d not found", id));
         }
         orderRepository.deleteById(id);
     }
@@ -42,7 +44,7 @@ public class OrderService implements OrderServiceInt {
     @Override
     public Order updateById(Long id, Order orderUpdated) {
         Order orderExist = orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Not Found"));
+                .orElseThrow(() -> new NoResultException(String.format("order with id %d not found", id)));
         orderExist.finalizeOrder(orderUpdated.getAddress(), orderUpdated.getEmail(), orderUpdated.getProducts());
         return orderRepository.save(orderExist);
     }
