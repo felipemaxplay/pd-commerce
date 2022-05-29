@@ -23,3 +23,11 @@ services:
       MYSQL_ROOT_PASSWORD: ordersadmin
     ports:
       - 3306:3306
+
+  postgresql:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
