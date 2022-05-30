@@ -18,9 +18,8 @@ services:
     image: mysql
     environment:
       MYSQL_DATABASE: orders
-      MYSQL_USER: orders
-      MYSQL_PASSWORD: ordersadmin
-      MYSQL_ROOT_PASSWORD: ordersadmin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
     ports:
       - 3306:3306
 
