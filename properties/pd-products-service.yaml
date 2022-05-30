@@ -13,6 +13,8 @@ spring:
     broker-url: tcp://${ARTEMIS_HOST:localhost}:${ARTEMIS_PORT:61616}
     user: ${ARTEMIS_USER:felipemaxplay}
     password: ${ARTEMIS_PASSWORD:adminpwd}
+  liquibase:
+    change-log: liquibase/db.changelog-master.xml
 
 server:
   port: 8000
