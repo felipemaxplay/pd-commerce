@@ -5,8 +5,8 @@ spring:
       ddl-auto: update
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:orders}
-    username: ${MYSQL_USER:orders}
-    password: ${MYSQL_PASSWORD:ordersadmin}
+    username: ${MYSQL_USER:admin}
+    password: ${MYSQL_PASSWORD:admin}
     driver-class-name: com.mysql.cj.jdbc.Driver
   artemis:
     mode: native
