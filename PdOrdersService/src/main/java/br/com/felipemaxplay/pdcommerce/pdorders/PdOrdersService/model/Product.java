@@ -8,25 +8,25 @@ import java.util.Objects;
 @Table(name = "pd_products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 125)
+    @Column(name = "name", nullable = false, length = 60)
     private String name;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = false, scale = 18, precision = 2)
     private BigDecimal price;
 
     @Column(name = "description", nullable = false, length = 255)
     private String description;
 
-    @Column(name = "type", nullable = false, length = 100)
+    @Column(name = "type", nullable = false, length = 60)
     private String type;
 
-    @Column(name = "brand", nullable = false, length = 100)
+    @Column(name = "brand", nullable = false, length = 50)
     private String brand;
 
-    @Column(name = "sku", nullable = false, length = 100, unique = true)
+    @Column(name = "sku", nullable = false, length = 15, unique = true)
     private String sku;
 
     @Deprecated

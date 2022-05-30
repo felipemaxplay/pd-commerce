@@ -15,20 +15,20 @@ import java.util.Set;
 @Table(name = "pd_orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address", nullable = false, length = 130)
     private String address;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, length = 30)
     private String email;
 
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = false, scale = 18, precision = 2)
     private BigDecimal price;
 
     @JsonManagedReference
