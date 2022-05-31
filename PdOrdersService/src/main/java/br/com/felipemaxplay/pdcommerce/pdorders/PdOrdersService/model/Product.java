@@ -26,7 +26,7 @@ public class Product {
     @Column(name = "brand", nullable = false, length = 50)
     private String brand;
 
-    @Column(name = "sku", nullable = false, length = 15, unique = true)
+    @Column(name = "sku", nullable = false, length = 30, unique = true)
     private String sku;
 
     @Deprecated
