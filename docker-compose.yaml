@@ -5,8 +5,8 @@ services:
     image: vromero/activemq-artemis:latest
     restart: always
     environment:
-      ARTEMIS_USERNAME: felipemaxplay
-      ARTEMIS_PASSWORD: adminpwd
+      ARTEMIS_USERNAME: root
+      ARTEMIS_PASSWORD: admin
     ports:
       - 61616:61616
       - 8161:8161
@@ -18,7 +18,7 @@ services:
     image: mysql
     environment:
       MYSQL_DATABASE: orders
-      MYSQL_USER: admin
+      MYSQL_USER: root
       MYSQL_PASSWORD: admin
       MYSQL_ROOT_PASSWORD: admin
     ports:
@@ -29,7 +29,7 @@ services:
     restart: always
     environment:
       POSTGRES_DB: products
-      POSTGRES_USER: admin
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: admin
     ports:
       - 5432:5432
@@ -38,7 +38,7 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: admin
     ports:
       - 27017:27017

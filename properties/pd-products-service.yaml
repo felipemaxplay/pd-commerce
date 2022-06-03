@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:products}
     driver-class-name: org.postgresql.Driver
-    username: ${POSTGRES_USER:admin}
+    username: ${POSTGRES_USER:root}
     password: ${POSTGRES_PASSWORD:admin}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -11,8 +11,8 @@ spring:
   artemis:
     mode: native
     broker-url: tcp://${ARTEMIS_HOST:localhost}:${ARTEMIS_PORT:61616}
-    user: ${ARTEMIS_USER:felipemaxplay}
-    password: ${ARTEMIS_PASSWORD:adminpwd}
+    user: ${ARTEMIS_USER:root}
+    password: ${ARTEMIS_PASSWORD:admin}
   liquibase:
     change-log: liquibase/db.changelog-master.xml
 
