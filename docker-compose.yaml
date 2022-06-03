@@ -16,6 +16,7 @@ services:
 
   mysql:
     image: mysql
+    restart: always
     environment:
       MYSQL_DATABASE: orders
       MYSQL_USER: root
