@@ -1,16 +1,11 @@
 spring:
-  application:
-    name: pd-email-service
-  cloud:
-    config:
-      enabled: false
   data:
     mongodb:
-      host: localhost
-      username: admin
-      password: admin
-      authentication-database: admin
-      port: 27017
+      host: ${MONGO_HOST:localhost}
+      username: ${MONGO_USERNAME:admin}
+      password: ${MONGO_PASSWORD:admin}
+      authentication-database: ${MONGO_AUTHENTICATION_DATABASE:admin}
+      port: ${MONGO_PORT:27017}
   artemis:
     mode: native
     broker-url: tcp://${ARTEMIS_HOST:localhost}:${ARTEMIS_PORT:61616}
