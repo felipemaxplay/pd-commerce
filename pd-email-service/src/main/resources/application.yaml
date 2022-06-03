@@ -26,7 +26,7 @@ spring:
         smtp:
           auth: ${MAIL_PROPERTIES_SMTP_AUTH}
           starttls:
-            enabled: ${MAIL_PROPERTIES_SMTP_AUTH_STARTTLS}
+            enable: ${MAIL_PROPERTIES_SMTP_AUTH_STARTTLS}
 
 email:
   from: ${EMAIL_FROM}
