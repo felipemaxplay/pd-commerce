@@ -6,6 +6,7 @@ spring:
       password: ${MONGO_PASSWORD:admin}
       authentication-database: ${MONGO_AUTHENTICATION_DATABASE:admin}
       port: ${MONGO_PORT:27017}
+      database: email_order
   artemis:
     mode: native
     broker-url: tcp://${ARTEMIS_HOST:localhost}:${ARTEMIS_PORT:61616}
