@@ -33,6 +33,7 @@ public class OrderController implements OrderControllerInt {
         this.pagedResourcesAssembler = pagedResourcesAssembler;
     }
 
+    @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<Order> createOrder(@Valid @RequestBody OrderRequestDto dto) {
@@ -41,6 +42,7 @@ public class OrderController implements OrderControllerInt {
         return entityModel;
     }
 
+    @Override
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Order> findOrder(@NonNull @PathVariable(name = "id") Long id) {
@@ -48,6 +50,7 @@ public class OrderController implements OrderControllerInt {
         return modelAssembler.toModel(order);
     }
 
+    @Override
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public PagedModel<EntityModel<Order>> findAllPaged(@NonNull @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -56,12 +59,14 @@ public class OrderController implements OrderControllerInt {
         return pagedModel;
     }
 
+    @Override
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@NonNull @PathVariable(name = "id") Long id) {
         orderServiceInt.deleteById(id);
     }
 
+    @Override
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Order> updateOrder(@NonNull @PathVariable(name = "id") Long id, @NonNull @Valid @RequestBody OrderRequestDto dto) {
