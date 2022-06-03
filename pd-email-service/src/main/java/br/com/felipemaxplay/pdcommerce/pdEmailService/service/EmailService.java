@@ -29,6 +29,7 @@ public class EmailService implements EmailServiceInt {
     @Override
     public void sendEmail(Email email) {
         try {
+            logger.info("Sending email");
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true);
 

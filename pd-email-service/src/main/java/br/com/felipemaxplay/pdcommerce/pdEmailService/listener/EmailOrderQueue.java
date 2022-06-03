@@ -34,17 +34,16 @@ public class EmailOrderQueue {
     @JmsListener(destination = "order.email.queue")
     public void onReceiveTopic(String json) {
         try {
+            logger.info("Received message in queue");
             OrderDto orderDto = objectMapper.readValue(json, OrderDto.class);
             String subject = "Successful purchase order id: " + orderDto.getId();
             String content = getEmailContent(orderDto);
             Email email = new Email(orderDto.getId(), orderDto.getEmail(), subject, content, EmailStatus.SENT);
             emailServiceInt.sendEmail(email);
-        } catch (JsonProcessingException e) {
-            logger.error(e.getMessage());
         } catch (TemplateException e) {
-            logger.error(e.getMessage());
+            logger.error("Unable to generate the content of the email");
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            logger.error("Could not convert order object to JSON");
         }
     }
 
