@@ -30,7 +30,7 @@ public class OrderEmailQueue implements ApplicationListener<OrderEvent> {
             String json = objectMapper.writeValueAsString(orderEmailDto);
             jmsTemplate.convertAndSend("order.email.queue", json);
         } catch (JsonProcessingException e) {
-            logger.error(e.getMessage());
+            logger.error("Could not convert orderEmailDto object to JSON");
         }
     }
 }
