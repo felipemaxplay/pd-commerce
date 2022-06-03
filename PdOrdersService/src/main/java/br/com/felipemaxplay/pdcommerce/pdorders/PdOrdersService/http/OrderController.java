@@ -5,6 +5,8 @@ import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.http.data.reques
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.http.data.response.OrderModelAssembler;
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.model.Order;
 import br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.service.OrderServiceInt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -21,6 +23,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(path = "/api/v1/orders")
 public class OrderController implements OrderControllerInt {
+    private final Logger logger = LoggerFactory.getLogger(OrderController.class);
     private final OrderServiceInt orderServiceInt;
     private final OrderRequestDtoConverter orderRequestDtoConverter;
     private final OrderModelAssembler modelAssembler;
@@ -37,6 +40,7 @@ public class OrderController implements OrderControllerInt {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<Order> createOrder(@Valid @RequestBody OrderRequestDto dto) {
+        logger.info("Creating new order");
         Order orderCreated = orderRequestDtoConverter.toOrder(dto);
         EntityModel<Order> entityModel = modelAssembler.toModel(orderServiceInt.save(orderCreated));
         return entityModel;
@@ -46,6 +50,7 @@ public class OrderController implements OrderControllerInt {
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Order> findOrder(@NonNull @PathVariable(name = "id") Long id) {
+        logger.info("Finding order by id");
         Order order = orderServiceInt.getById(id);
         return modelAssembler.toModel(order);
     }
@@ -54,6 +59,7 @@ public class OrderController implements OrderControllerInt {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public PagedModel<EntityModel<Order>> findAllPaged(@NonNull @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        logger.info("Retrieving paged order");
         Page<Order> page = orderServiceInt.findAll(pageable);
         PagedModel<EntityModel<Order>> pagedModel = pagedResourcesAssembler.toModel(page, modelAssembler);
         return pagedModel;
@@ -63,6 +69,7 @@ public class OrderController implements OrderControllerInt {
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@NonNull @PathVariable(name = "id") Long id) {
+        logger.info("Deleting order");
         orderServiceInt.deleteById(id);
     }
 
@@ -70,6 +77,7 @@ public class OrderController implements OrderControllerInt {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Order> updateOrder(@NonNull @PathVariable(name = "id") Long id, @NonNull @Valid @RequestBody OrderRequestDto dto) {
+        logger.info("Updating order");
         Order orderUpdated = orderRequestDtoConverter.toOrder(dto);
         EntityModel<Order> entityModel = modelAssembler.toModel(orderServiceInt.updateById(id, orderUpdated));
         return entityModel;
