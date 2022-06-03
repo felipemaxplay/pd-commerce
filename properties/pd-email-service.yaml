@@ -12,16 +12,16 @@ spring:
     user: ${ARTEMIS_USER:felipemaxplay}
     password: ${ARTEMIS_PASSWORD:adminpwd}
   mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
-          auth: ${MAIL_PROPERTIES_SMTP_AUTH}
+          auth: ${MAIL_PROPERTIES_SMTP_AUTH:true}
           starttls:
-            enable: ${MAIL_PROPERTIES_SMTP_AUTH_STARTTLS}
+            enable: ${MAIL_PROPERTIES_SMTP_AUTH_STARTTLS:true}
   freemarker:
     template-loader-path: classpath:/templates
     suffix: .ftlh
