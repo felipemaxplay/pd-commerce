@@ -43,7 +43,7 @@ public class EmailOrderQueue {
         } catch (TemplateException e) {
             logger.error("Unable to generate the content of the email");
         } catch (IOException e) {
-            logger.error("Could not convert order object to JSON");
+            logger.error("Could not create new product instance based on received json");
         }
     }
 
