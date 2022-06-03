@@ -27,6 +27,10 @@ spring:
           auth: ${MAIL_PROPERTIES_SMTP_AUTH}
           starttls:
             enable: ${MAIL_PROPERTIES_SMTP_AUTH_STARTTLS}
+  freemarker:
+    template-loader-path: classpath:/templates
+    suffix: .ftlh
+    expose-spring-macro-helpers: true
 
 email:
   from: ${EMAIL_FROM}
