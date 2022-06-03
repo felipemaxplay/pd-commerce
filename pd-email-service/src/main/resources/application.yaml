@@ -4,3 +4,32 @@ spring:
   cloud:
     config:
       enabled: false
+  data:
+    mongodb:
+      host: localhost
+      username: admin
+      password: admin
+      authentication-database: admin
+      port: 27017
+  artemis:
+    mode: native
+    broker-url: tcp://${ARTEMIS_HOST:localhost}:${ARTEMIS_PORT:61616}
+    user: ${ARTEMIS_USER:felipemaxplay}
+    password: ${ARTEMIS_PASSWORD:adminpwd}
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_PROPERTIES_SMTP_AUTH}
+          starttls:
+            enabled: ${MAIL_PROPERTIES_SMTP_AUTH_STARTTLS}
+
+email:
+  from: ${EMAIL_FROM}
+
+server:
+  port: 8200
