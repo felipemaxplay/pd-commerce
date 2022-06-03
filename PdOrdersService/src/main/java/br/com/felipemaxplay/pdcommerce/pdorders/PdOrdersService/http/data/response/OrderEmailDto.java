@@ -1,6 +1,5 @@
 package br.com.felipemaxplay.pdcommerce.pdorders.PdOrdersService.http.data.response;
 
-import javax.validation.constraints.Email;
 import java.math.BigDecimal;
 import java.util.Set;
 
