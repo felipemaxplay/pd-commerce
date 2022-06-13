@@ -15,6 +15,11 @@ spring:
     password: ${ARTEMIS_PASSWORD:admin}
   liquibase:
     change-log: liquibase/db.changelog-master.xml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${KEYCLOAK_HOST:localhost}:${KEYCLOAK_PORT:9999}/realms/${KEYCLOAK_REALM:pd-commerce}
 
 server:
   port: 8100
