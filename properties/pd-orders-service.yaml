@@ -21,5 +21,11 @@ spring:
         jwt:
           issuer-uri: http://${KEYCLOAK_HOST:localhost}:${KEYCLOAK_PORT:9999}/realms/${KEYCLOAK_REALM:pd-commerce}
 
+springdoc:
+  api-docs:
+    path: /api-documentation
+  swagger-ui:
+    path: /documentation
+
 server:
   port: 8100
