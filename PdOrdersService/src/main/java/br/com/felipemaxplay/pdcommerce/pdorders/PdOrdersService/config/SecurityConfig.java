@@ -8,9 +8,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String[] WHITELIST = {
+            "/documentation",
+            "/api-documentation",
+            "/api-documentation/**",
+            "/swagger-ui",
+            "/swagger-ui/**"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers(WHITELIST)
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
