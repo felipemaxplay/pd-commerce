@@ -4,14 +4,13 @@ import br.com.felipemaxplay.pdcommerce.pdEmailService.http.data.response.OrderDt
 import br.com.felipemaxplay.pdcommerce.pdEmailService.model.Email;
 import br.com.felipemaxplay.pdcommerce.pdEmailService.model.EmailStatus;
 import br.com.felipemaxplay.pdcommerce.pdEmailService.service.EmailServiceInt;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jms.annotation.JmsListener;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
@@ -31,7 +30,7 @@ public class EmailOrderQueue {
         this.configFreemarker = configFreemarker;
     }
 
-    @JmsListener(destination = "order.email.queue")
+    @RabbitListener(queues = "order.email.queue")
     public void onReceiveTopic(String json) {
         try {
             logger.info("Received message in queue");
