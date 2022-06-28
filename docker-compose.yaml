@@ -1,18 +1,15 @@
 version: '3.9'
 
 services:
-  activemq-artemis:
-    image: vromero/activemq-artemis:latest
+  rabbitmq:
+    image: rabbitmq:management
     restart: always
-    environment:
-      ARTEMIS_USERNAME: admin
-      ARTEMIS_PASSWORD: admin
     ports:
-      - 61616:61616
-      - 8161:8161
-    expose:
-      - 61616
-      - 8161
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
 
   mysql:
     image: mysql
@@ -46,6 +43,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak
+    restart: always
     ports:
       - 9999:8080
     environment:
