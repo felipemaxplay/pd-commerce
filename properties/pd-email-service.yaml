@@ -22,6 +22,11 @@ spring:
     template-loader-path: classpath:/templates
     suffix: .ftlh
     expose-spring-macro-helpers: true
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:admin}
+    password: ${RABBITMQ_PASSWORD:admin}
 
 # email:
 #   from: ${EMAIL_FROM:your_email@your_domain.com}
