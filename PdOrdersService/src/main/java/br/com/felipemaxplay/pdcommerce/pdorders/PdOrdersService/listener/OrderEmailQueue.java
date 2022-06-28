@@ -7,20 +7,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OrderEmailQueue implements ApplicationListener<OrderEvent> {
+    @Value("${spring.rabbitmq.queue}")
+    private String queue;
     private static final Logger logger = LoggerFactory.getLogger(OrderEmailQueue.class);
-
     private final ObjectMapper objectMapper;
-    private final JmsTemplate jmsTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
-    public OrderEmailQueue(ObjectMapper objectMapper, JmsTemplate jmsTemplate) {
+    public OrderEmailQueue(ObjectMapper objectMapper, RabbitTemplate rabbitTemplate) {
         this.objectMapper = objectMapper;
-        this.jmsTemplate = jmsTemplate;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class OrderEmailQueue implements ApplicationListener<OrderEvent> {
         try {
             OrderEmailDto orderEmailDto = OrderConverter.toOrderEmailDto(event.getOrder());
             String json = objectMapper.writeValueAsString(orderEmailDto);
-            jmsTemplate.convertAndSend("order.email.queue", json);
+            rabbitTemplate.convertAndSend(queue, json);
         } catch (JsonProcessingException e) {
             logger.error("Could not convert orderEmailDto object to JSON");
         }
