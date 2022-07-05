@@ -72,3 +72,11 @@ services:
       - 3000
     ports:
       - 3000:3000
+
+  zipkin:
+    image: openzipkin/zipkin
+    restart:  unless-stopped
+    expose:
+      - 9411
+    ports:
+      - 9411:9411
