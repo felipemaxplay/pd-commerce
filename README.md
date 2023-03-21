@@ -1,1 +1,2 @@
 # P.D-Commerce
+PD-Commerce é uma plataforma de comércio eletrônico desenvolvida em Java com Spring Framework. O sistema utiliza MySQL, PostgreSQL e MongoDB como bancos de dados, além de ferramentas como Prometheus, RabbitMQ, Springdoc e Liquibase. O projeto foi desenvolvido como parte do meu processo de aprendizado em Java e Spring e pode ser usado como base para futuros projetos de comércio eletrônico.
